@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>المعهد الكندي</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f3f5f4;
+      color: #26332f;
+    }
+
+    header {
+      background: #2f6f52;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+      border-radius: 0 0 30px 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 0 16px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      background: #dfe5e2;
+      color: #26332f;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: #2f6f52;
+      color: white;
+    }
+
+    .subjects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .subject {
+      background: white;
+      padding: 22px 10px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px solid #e0e5e2;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .subject:hover {
+      transform: translateY(-3px);
+    }
+
+    .subject-icon {
+      font-size: 35px;
+    }
+
+    .subject h3 {
+      margin: 10px 0 5px;
+    }
+
+    .subject small {
+      color: #77837e;
+    }
+
+    .teachers {
+      margin-top: 30px;
+    }
+
+    .teachers h2 {
+      margin-bottom: 15px;
+    }
+
+    .teacher {
+      background: white;
+      padding: 17px;
+      margin-bottom: 10px;
+      border-radius: 16px;
+      border-right: 5px solid #2f6f52;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .teacher-status {
+      color: #2f6f52;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .message {
+      background: white;
+      padding: 25px;
+      text-align: center;
+      border-radius: 18px;
+      color: #68736f;
+    }
+
+    footer {
+      text-align: center;
+      color: #77837e;
+      padding: 30px 10px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 27px;
+      }
+
+      .subjects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>المعهد الكندي</h1>
+  <p>منصة الطلاب والمدرسين</p>
+</header>
+
+<div class="container">
+
+  <!-- الصفوف -->
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      onclick="changeClass('sixth', this)">
+      السادس الإعدادي
+    </button>
+
+    <button
+      class="tab"
+      onclick="changeClass('third', this)">
+      الثالث المتوسط
+    </button>
+
+  </div>
+
+
+  <!-- السادس -->
+  <div id="sixth" class="page active">
+
+    <div class="subjects">
+
+      <div class="subject" onclick="showTeachers('كيمياء')">
+        <div class="subject-icon">🧪</div>
+        <h3>كيمياء</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('فيزياء')">
+        <div class="subject-icon">⚡</div>
+        <h3>فيزياء</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('رياضيات')">
+        <div class="subject-icon">📐</div>
+        <h3>رياضيات</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('إنكليزي')">
+        <div class="subject-icon">🇬🇧</div>
+        <h3>إنكليزي</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('أحياء')">
+        <div class="subject-icon">🧬</div>
+        <h3>أحياء</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('عربي')">
+        <div class="subject-icon">📚</div>
+        <h3>عربي</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('إسلامية')">
+        <div class="subject-icon">☪️</div>
+        <h3>إسلامية</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('فرنسي')">
+        <div class="subject-icon">🇫🇷</div>
+        <h3>فرنسي</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- الثالث المتوسط -->
+  <div id="third" class="page">
+
+    <div class="subjects">
+
+      <div class="subject" onclick="showTeachers('كيمياء')">
+        <div class="subject-icon">🧪</div>
+        <h3>كيمياء</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('فيزياء')">
+        <div class="subject-icon">⚡</div>
+        <h3>فيزياء</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('رياضيات')">
+        <div class="subject-icon">📐</div>
+        <h3>رياضيات</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('إنكليزي')">
+        <div class="subject-icon">🇬🇧</div>
+        <h3>إنكليزي</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('أحياء')">
+        <div class="subject-icon">🧬</div>
+        <h3>أحياء</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('عربي')">
+        <div class="subject-icon">📚</div>
+        <h3>عربي</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('إسلامية')">
+        <div class="subject-icon">☪️</div>
+        <h3>إسلامية</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+      <div class="subject" onclick="showTeachers('فرنسي')">
+        <div class="subject-icon">🇫🇷</div>
+        <h3>فرنسي</h3>
+        <small>عرض المدرسين</small>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- المدرسون -->
+  <div class="teachers">
+
+    <h2>👨‍🏫 المدرسون المتواجدون</h2>
+
+    <div id="teacherList" class="message">
+      اختاري المادة لعرض المدرسين المتواجدين.
+    </div>
+
+  </div>
+
+</div>
+
+
+<footer>
+  المعهد الكندي © 2026
+</footer>
+
+
+<script>
+
+  const teachers = {
+
+    "كيمياء": [
+      "مدرس الكيمياء الأول",
+      "مدرس الكيمياء الثاني"
+    ],
+
+    "فيزياء": [
+      "مدرس الفيزياء"
+    ],
+
+    "رياضيات": [
+      "مدرس الرياضيات الأول",
+      "مدرس الرياضيات الثاني"
+    ],
+
+    "إنكليزي": [
+      "مدرس اللغة الإنكليزية"
+    ],
+
+    "أحياء": [
+      "مدرس الأحياء"
+    ],
+
+    "عربي": [
+      "مدرس اللغة العربية"
+    ],
+
+    "إسلامية": [
+      "مدرس التربية الإسلامية"
+    ],
+
+    "فرنسي": [
+      "مدرس اللغة الفرنسية"
+    ]
+
+  };
+
+
+  function showTeachers(subject) {
+
+    const list = document.getElementById("teacherList");
+
+    const names = teachers[subject];
+
+    if (!names || names.length === 0) {
+
+      list.innerHTML =
+        "لا يوجد مدرسون متواجدون حالياً.";
+
+      return;
+
+    }
+
+
+    let html = "";
+
+    names.forEach(function(name) {
+
+      html += `
+        <div class="teacher">
+
+          <strong>${name}</strong>
+
+          <div class="teacher-status">
+            ● متواجد في المعهد
+          </div>
+
+        </div>
+      `;
+
+    });
+
+
+    list.innerHTML = html;
+
+    document
+      .querySelector(".teachers")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+
+  function changeClass(className, button) {
+
+    document
+      .querySelectorAll(".page")
+      .forEach(function(page) {
+
+        page.classList.remove("active");
+
+      });
+
+
+    document
+      .getElementById(className)
+      .classList.add("active");
+
+
+    document
+      .querySelectorAll(".tab")
+      .forEach(function(tab) {
+
+        tab.classList.remove("active");
+
+      });
+
+
+    button.classList.add("active");
+
+
+    document.getElementById("teacherList").innerHTML =
+      "اختاري المادة لعرض المدرسين المتواجدين.";
+
+  }
+
+</script>
+
+</body>
+</html>
