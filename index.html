@@ -1,480 +1,1981 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>المعهد الكندي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Tahoma, Arial, sans-serif;
-    }
+<title>المعهد الكندي</title>
 
-    body {
-      margin: 0;
-      background: #f3f5f4;
-      color: #26332f;
-    }
+<style>
 
-    header {
-      background: #2f6f52;
-      color: white;
-      text-align: center;
-      padding: 30px 15px;
-      border-radius: 0 0 30px 30px;
-    }
+*{
+box-sizing:border-box;
+font-family:Arial,Tahoma,sans-serif;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-    }
+body{
+margin:0;
+background:#f2f5f3;
+color:#26352f;
+}
 
-    header p {
-      margin: 8px 0 0;
-      opacity: 0.9;
-    }
+header{
+background:linear-gradient(135deg,#155c42,#3d9470);
+color:white;
+padding:28px 18px;
+text-align:center;
+border-radius:0 0 32px 32px;
+box-shadow:0 5px 20px #0002;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 25px auto;
-      padding: 0 16px;
-    }
+header h1{
+margin:0;
+font-size:30px;
+}
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+header p{
+margin:8px 0 0;
+opacity:.9;
+}
 
-    .tab {
-      flex: 1;
-      padding: 15px;
-      border: none;
-      border-radius: 15px;
-      background: #dfe5e2;
-      color: #26332f;
-      font-size: 17px;
-      cursor: pointer;
-    }
+.container{
+max-width:950px;
+margin:auto;
+padding:18px;
+}
 
-    .tab.active {
-      background: #2f6f52;
-      color: white;
-    }
+.card{
+background:white;
+border-radius:22px;
+padding:20px;
+margin-bottom:16px;
+box-shadow:0 4px 15px #00000012;
+}
 
-    .subjects {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
+.welcome{
+text-align:center;
+}
 
-    .subject {
-      background: white;
-      padding: 22px 10px;
-      text-align: center;
-      border-radius: 20px;
-      border: 1px solid #e0e5e2;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.06);
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.welcome h2{
+color:#155c42;
+margin-top:0;
+}
 
-    .subject:hover {
-      transform: translateY(-3px);
-    }
+/* MENU */
 
-    .subject-icon {
-      font-size: 35px;
-    }
+.menu{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:13px;
+}
 
-    .subject h3 {
-      margin: 10px 0 5px;
-    }
+.menu button{
+border:0;
+background:white;
+border-radius:20px;
+padding:20px 10px;
+box-shadow:0 4px 15px #0001;
+cursor:pointer;
+font-size:16px;
+color:#155c42;
+font-weight:bold;
+}
 
-    .subject small {
-      color: #77837e;
-    }
+.menu button:active{
+transform:scale(.97);
+}
 
-    .teachers  {
- "كيمياء": [
-    "حسان ثابت المحمدي",
-    "احمد محمد الدهان",
-    "ايهاب"
-  ],
+.menu-icon{
+display:block;
+font-size:35px;
+margin-bottom:8px;
+}
 
-  "فيزياء": [
-    "خليل الدليمي",
-    "حسن ثابت"
-  ],
+/* PAGES */
 
-  "رياضيات": [
-    "اسكندر محمد",
-    "هادي المعاضيدي"
-  ],
+.page{
+display:none;
+}
 
-  "إنكليزي": [
-    "حامد عبد عرموط",
-    "رياض الحلبوسي"
-  ],
+.page.active{
+display:block;
+}
 
-  "أحياء": [
-    "مصطفى قدوري",
-    "زينه هوبي"
-  ],
+/* BUTTONS */
 
-  "عربي": [
-    "مصطفى هاشم",
-    "رياض العيسى",
-    "محمد كريم"
-  ],
+.primary{
+background:#155c42;
+color:white;
+border:0;
+padding:13px 20px;
+border-radius:12px;
+font-size:16px;
+cursor:pointer;
+}
 
-  "إسلامية": [
-    "بشرى",
-    "رابح"
-  ],
+.secondary{
+background:#68736e;
+color:white;
+border:0;
+padding:11px 18px;
+border-radius:12px;
+cursor:pointer;
+}
 
-  "فرنسي": [
-    "اركان"
-  ]};
-      margin-top: 30px;
-    }
+.back{
+margin-bottom:15px;
+}
 
-    .teachers h2 {
-      margin-bottom: 15px;
-    }
+/* FORMS */
 
-    .teacher {
-      background: white;
-      padding: 17px;
-      margin-bottom: 10px;
-      border-radius: 16px;
-      border-right: 5px solid #2f6f52;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
+input,select,textarea{
+width:100%;
+padding:14px;
+margin:7px 0;
+border:1px solid #d9dfdc;
+border-radius:12px;
+font-size:16px;
+outline:none;
+}
 
-    .teacher-status {
-      color: #2f6f52;
-      font-size: 14px;
-      margin-top: 5px;
-    }
+textarea{
+height:110px;
+resize:none;
+}
 
-    .message {
-      background: white;
-      padding: 25px;
-      text-align: center;
-      border-radius: 18px;
-      color: #68736f;
-    }
+/* ACCOUNT TYPES */
 
-    footer {
-      text-align: center;
-      color: #77837e;
-      padding: 30px 10px;
-    }
+.account-types{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
 
-    .page {
-      display: none;
-    }
+.account-type{
+background:#eef6f1;
+border:0;
+padding:20px 10px;
+border-radius:18px;
+font-size:16px;
+cursor:pointer;
+}
 
-    .page.active {
-      display: block;
-    }
+.account-type span{
+display:block;
+font-size:38px;
+margin-bottom:8px;
+}
 
-    @media (max-width: 500px) {
-      header h1 {
-        font-size: 27px;
-      }
+/* SUBJECTS */
 
-      .subjects {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-  </style>
+.subject-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:13px;
+}
+
+.subject-card{
+background:white;
+border:1px solid #e2e7e4;
+border-radius:18px;
+padding:18px;
+text-align:center;
+cursor:pointer;
+box-shadow:0 2px 8px #0001;
+}
+
+.subject-card .icon{
+font-size:35px;
+}
+
+.subject-card h3{
+color:#155c42;
+margin:8px 0 0;
+}
+
+/* TEACHERS */
+
+.teacher-card{
+background:#f7faf8;
+border-radius:17px;
+padding:16px;
+margin:10px 0;
+border:1px solid #e2e9e5;
+}
+
+.teacher-name{
+font-size:19px;
+font-weight:bold;
+color:#155c42;
+}
+
+.status{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+font-size:13px;
+margin:8px 0;
+}
+
+.online{
+background:#d9f5e4;
+color:#13713e;
+}
+
+.offline{
+background:#f8dddd;
+color:#a52a2a;
+}
+
+.contact{
+display:inline-block;
+text-decoration:none;
+background:#155c42;
+color:white;
+padding:9px 14px;
+border-radius:10px;
+margin-top:5px;
+}
+
+/* STUDENT */
+
+.step{
+margin-bottom:15px;
+}
+
+.step-title{
+font-weight:bold;
+color:#155c42;
+margin-bottom:7px;
+}
+
+.choice-grid{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.choice{
+border:1px solid #d7e0db;
+background:white;
+padding:11px 15px;
+border-radius:12px;
+cursor:pointer;
+}
+
+.choice.selected{
+background:#155c42;
+color:white;
+}
+
+/* ANNOUNCEMENTS */
+
+.announcement{
+border-right:5px solid #155c42;
+background:#f0f7f3;
+padding:15px;
+border-radius:12px;
+margin:10px 0;
+}
+
+.notification{
+border-right:5px solid #d39b00;
+background:#fff8df;
+padding:15px;
+border-radius:12px;
+margin:10px 0;
+}
+
+/* ADMIN */
+
+.admin-item{
+background:#f7f9f8;
+padding:15px;
+border-radius:15px;
+margin:10px 0;
+}
+
+.admin-buttons{
+display:flex;
+gap:7px;
+margin-top:10px;
+flex-wrap:wrap;
+}
+
+.danger{
+background:#b83b3b;
+color:white;
+border:0;
+padding:9px 14px;
+border-radius:9px;
+cursor:pointer;
+}
+
+/* DASHBOARD */
+
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+background:#eef6f1;
+padding:15px;
+border-radius:16px;
+margin-bottom:15px;
+}
+
+.profile-icon{
+font-size:40px;
+}
+
+.hidden{
+display:none!important;
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#78817d;
+font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.container{
+padding:12px;
+}
+
+.account-types{
+grid-template-columns:1fr;
+}
+
+.subject-grid{
+grid-template-columns:1fr;
+}
+
+.menu{
+grid-template-columns:1fr 1fr;
+}
+
+header h1{
+font-size:26px;
+}
+
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#155c42;
+color:white;
+padding:13px 20px;
+border-radius:12px;
+display:none;
+z-index:1000;
+}
+
+</style>
 </head>
+
 
 <body>
 
+
 <header>
-  <h1>المعهد الكندي</h1>
-  <p>منصة الطلاب والمدرسين</p>
+
+<h1>🏫 المعهد الكندي</h1>
+
+<p>منصة الطلاب والمدرسين والإدارة</p>
+
 </header>
+
 
 <div class="container">
 
-  <!-- الصفوف -->
-  <div class="tabs">
 
-    <button
-      class="tab active"
-      onclick="changeClass('sixth', this)">
-      السادس الإعدادي
-    </button>
+<!-- HOME -->
 
-    <button
-      class="tab"
-      onclick="changeClass('third', this)">
-      الثالث المتوسط
-    </button>
+<div id="home" class="page active">
 
-  </div>
+<div class="card welcome">
+
+<h2>أهلاً بكم في المعهد الكندي 🌿</h2>
+
+<p>
+منصة تعليمية لخدمة الطلاب والمدرسين وإدارة المعهد.
+</p>
+
+</div>
 
 
-  <!-- السادس -->
-  <div id="sixth" class="page active">
+<div class="menu">
 
-    <div class="subjects">
+<button onclick="showPage('studentPage')">
 
-      <div class="subject" onclick="showTeachers('كيمياء')">
-        <div class="subject-icon">🧪</div>
-        <h3>كيمياء</h3>
-        <small>عرض المدرسين</small>
-      </div>
+<span class="menu-icon">👨‍🎓</span>
+الطلاب
 
-      <div class="subject" onclick="showTeachers('فيزياء')">
-        <div class="subject-icon">⚡</div>
-        <h3>فيزياء</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('رياضيات')">
-        <div class="subject-icon">📐</div>
-        <h3>رياضيات</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('إنكليزي')">
-        <div class="subject-icon">🇬🇧</div>
-        <h3>إنكليزي</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('أحياء')">
-        <div class="subject-icon">🧬</div>
-        <h3>أحياء</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('عربي')">
-        <div class="subject-icon">📚</div>
-        <h3>عربي</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('إسلامية')">
-        <div class="subject-icon">☪️</div>
-        <h3>إسلامية</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('فرنسي')">
-        <div class="subject-icon">🇫🇷</div>
-        <h3>فرنسي</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-    </div>
-
-  </div>
+</button>
 
 
-  <!-- الثالث المتوسط -->
-  <div id="third" class="page">
+<button onclick="showPage('teacherPage')">
 
-    <div class="subjects">
+<span class="menu-icon">👨‍🏫</span>
+المدرسون
 
-      <div class="subject" onclick="showTeachers('كيمياء')">
-        <div class="subject-icon">🧪</div>
-        <h3>كيمياء</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('فيزياء')">
-        <div class="subject-icon">⚡</div>
-        <h3>فيزياء</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('رياضيات')">
-        <div class="subject-icon">📐</div>
-        <h3>رياضيات</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('إنكليزي')">
-        <div class="subject-icon">🇬🇧</div>
-        <h3>إنكليزي</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('أحياء')">
-        <div class="subject-icon">🧬</div>
-        <h3>أحياء</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('عربي')">
-        <div class="subject-icon">📚</div>
-        <h3>عربي</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('إسلامية')">
-        <div class="subject-icon">☪️</div>
-        <h3>إسلامية</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-      <div class="subject" onclick="showTeachers('فرنسي')">
-        <div class="subject-icon">🇫🇷</div>
-        <h3>فرنسي</h3>
-        <small>عرض المدرسين</small>
-      </div>
-
-    </div>
-
-  </div>
+</button>
 
 
-  <!-- المدرسون -->
-  <div class="teachers">
+<button onclick="showPage('accountPage')">
 
-    <h2>👨‍🏫 المدرسون المتواجدون</h2>
+<span class="menu-icon">👤</span>
+إنشاء حساب
 
-    <div id="teacherList" class="message">
-      اختاري المادة لعرض المدرسين المتواجدين.
-    </div>
+</button>
 
-  </div>
+
+<button onclick="showPage('announcementsPage')">
+
+<span class="menu-icon">📢</span>
+الإعلانات
+
+</button>
+
+
+<button onclick="showPage('notificationsPage')">
+
+<span class="menu-icon">🔔</span>
+التنبيهات
+
+</button>
+
+
+<button onclick="showPage('questionsPage')">
+
+<span class="menu-icon">💬</span>
+الاستفسارات
+
+</button>
+
+
+<button onclick="showPage('adminLoginPage')">
+
+<span class="menu-icon">🔐</span>
+الإدارة
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ACCOUNT -->
+
+<div id="accountPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← رجوع
+</button>
+
+<div class="card">
+
+<h2>👤 إنشاء حساب</h2>
+
+<p>اختر نوع الحساب:</p>
+
+
+<div class="account-types">
+
+<button class="account-type"
+onclick="registerForm('student')">
+
+<span>👨‍🎓</span>
+طالب
+
+</button>
+
+
+<button class="account-type"
+onclick="registerForm('teacher')">
+
+<span>👨‍🏫</span>
+مدرس
+
+</button>
+
+
+<button class="account-type"
+onclick="registerForm('admin')">
+
+<span>🏫</span>
+إدارة
+
+</button>
+
+</div>
+
+
+<div id="registerBox" class="hidden">
+
+<h3 id="registerTitle"></h3>
+
+<input id="regName"
+placeholder="الاسم الكامل">
+
+<input id="regPhone"
+placeholder="رقم الهاتف">
+
+<input id="regEmail"
+placeholder="البريد الإلكتروني">
+
+<input id="regPassword"
+type="password"
+placeholder="كلمة المرور">
+
+<select id="regClass">
+
+<option value="">اختر الصف</option>
+<option>السادس الإعدادي</option>
+<option>الثالث المتوسط</option>
+
+</select>
+
+<button class="primary"
+onclick="createAccount()">
+
+إنشاء الحساب
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- STUDENT -->
+
+<div id="studentPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← رجوع
+</button>
+
+<div class="card">
+
+<h2>👨‍🎓 منصة الطالب</h2>
+
+<p>اختر الصف ثم المادة ثم المدرس.</p>
+
+
+<div class="step">
+
+<div class="step-title">
+1️⃣ اختر الصف
+</div>
+
+<div class="choice-grid">
+
+<button class="choice"
+onclick="selectClass(this,'السادس الإعدادي')">
+السادس الإعدادي
+</button>
+
+<button class="choice"
+onclick="selectClass(this,'الثالث المتوسط')">
+الثالث المتوسط
+</button>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-title">
+2️⃣ اختر المادة
+</div>
+
+<select id="studentSubject"
+onchange="loadTeachers()">
+
+<option value="">اختر المادة</option>
+
+<option>الكيمياء</option>
+<option>الفيزياء</option>
+<option>الرياضيات</option>
+<option>الإنكليزي</option>
+<option>العربي</option>
+<option>الأحياء</option>
+<option>الإسلامية</option>
+<option>الفرنسي</option>
+
+</select>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-title">
+3️⃣ المدرسون
+</div>
+
+<div id="studentTeachers">
+
+<p>
+اختر المادة لعرض المدرسين.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- TEACHER -->
+
+<div id="teacherPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← رجوع
+</button>
+
+<div class="card">
+
+<h2>👨‍🏫 لوحة المدرس</h2>
+
+<div class="profile">
+
+<div class="profile-icon">👨‍🏫</div>
+
+<div>
+
+<strong id="teacherDisplayName">
+حساب المدرس
+</strong>
+
+<br>
+
+<span>تحديث حالة التواجد</span>
+
+</div>
+
+</div>
+
+
+<input
+id="teacherNameInput"
+placeholder="اسم المدرس">
+
+
+<input
+id="teacherPhoneInput"
+placeholder="رقم الهاتف">
+
+
+<select id="teacherSubjectInput">
+
+<option>الكيمياء</option>
+<option>الفيزياء</option>
+<option>الرياضيات</option>
+<option>الإنكليزي</option>
+<option>العربي</option>
+<option>الأحياء</option>
+<option>الإسلامية</option>
+<option>الفرنسي</option>
+
+</select>
+
+
+<h3>حالة المدرس</h3>
+
+<button class="primary"
+onclick="setTeacherStatus(true)">
+
+🟢 متواجد الآن
+
+</button>
+
+<button class="secondary"
+onclick="setTeacherStatus(false)">
+
+🔴 غير متواجد
+
+</button>
+
+<p id="teacherStatusText">
+الحالة الحالية: غير متواجد
+</p>
+
+<button class="primary"
+onclick="saveTeacher()">
+
+💾 حفظ معلومات المدرس
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ANNOUNCEMENTS -->
+
+<div id="announcementsPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← رجوع
+</button>
+
+<div class="card">
+
+<h2>📢 إعلانات المعهد</h2>
+
+<div id="announcementsList"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- NOTIFICATIONS -->
+
+<div id="notificationsPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← رجوع
+</button>
+
+<div class="card">
+
+<h2>🔔 التنبيهات</h2>
+
+<div id="notificationsList"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- QUESTIONS -->
+
+<div id="questionsPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← رجوع
+</button>
+
+<div class="card">
+
+<h2>💬 الاستفسارات</h2>
+
+<input
+id="questionName"
+placeholder="اسم الطالب">
+
+<input
+id="questionPhone"
+placeholder="رقم الهاتف">
+
+<textarea
+id="questionText"
+placeholder="اكتب استفسارك هنا..."></textarea>
+
+<button class="primary"
+onclick="sendQuestion()">
+
+إرسال الاستفسار
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ADMIN LOGIN -->
+
+<div id="adminLoginPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← رجوع
+</button>
+
+<div class="card">
+
+<h2>🔐 دخول الإدارة</h2>
+
+<p>
+هذه صفحة الإدارة الخاصة بالمعهد.
+</p>
+
+<input
+id="adminPassword"
+type="password"
+placeholder="كلمة مرور الإدارة">
+
+<button class="primary"
+onclick="adminLogin()">
+
+دخول الإدارة
+
+</button>
+
+<p style="font-size:13px;color:#777">
+للتجربة: كلمة المرور هي
+<strong>admin123</strong>
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- ADMIN -->
+
+<div id="adminPage" class="page">
+
+<button class="secondary back" onclick="showPage('home')">
+← الرئيسية
+</button>
+
+<div class="card">
+
+<h2>🔐 لوحة إدارة المعهد</h2>
+
+<p>
+من هنا تستطيع الإدارة التحكم بالمعلومات.
+</p>
+
+
+<hr>
+
+
+<h3>👨‍🏫 إضافة مدرس</h3>
+
+<input
+id="newTeacherName"
+placeholder="اسم المدرس">
+
+<input
+id="newTeacherPhone"
+placeholder="رقم الهاتف">
+
+<select id="newTeacherSubject">
+
+<option>الكيمياء</option>
+<option>الفيزياء</option>
+<option>الرياضيات</option>
+<option>الإنكليزي</option>
+<option>العربي</option>
+<option>الأحياء</option>
+<option>الإسلامية</option>
+<option>الفرنسي</option>
+
+</select>
+
+<button class="primary"
+onclick="addTeacher()">
+
+➕ إضافة مدرس
+
+</button>
+
+
+<h3>📋 المدرسون الموجودون</h3>
+
+<div id="adminTeachers"></div>
+
+
+<hr>
+
+
+<h3>📢 إضافة إعلان</h3>
+
+<input
+id="newAnnouncementTitle"
+placeholder="عنوان الإعلان">
+
+<textarea
+id="newAnnouncementText"
+placeholder="نص الإعلان"></textarea>
+
+<button class="primary"
+onclick="addAnnouncement()">
+
+📢 نشر الإعلان
+
+</button>
+
+
+<hr>
+
+
+<h3>🔔 إضافة تنبيه</h3>
+
+<input
+id="newNotification"
+placeholder="نص التنبيه">
+
+<button class="primary"
+onclick="addNotification()">
+
+🔔 إرسال التنبيه
+
+</button>
+
+
+<hr>
+
+
+<h3>💬 الاستفسارات الواردة</h3>
+
+<div id="adminQuestions"></div>
+
+</div>
+
+</div>
+
 
 </div>
 
 
 <footer>
-  المعهد الكندي © 2026
+
+© 2026 المعهد الكندي
+<br>
+منصة تعليمية للطلاب والمدرسين
+
 </footer>
+
+
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-  const teachers = {
 
-    "كيمياء": [
-      "مدرس الكيمياء الأول",
-      "مدرس الكيمياء الثاني"
-    ],
-
-    "فيزياء": [
-      "مدرس الفيزياء"
-    ],
-
-    "رياضيات": [
-      "مدرس الرياضيات الأول",
-      "مدرس الرياضيات الثاني"
-    ],
-
-    "إنكليزي": [
-      "مدرس اللغة الإنكليزية"
-    ],
-
-    "أحياء": [
-      "مدرس الأحياء"
-    ],
-
-    "عربي": [
-      "مدرس اللغة العربية"
-    ],
-
-    "إسلامية": [
-      "مدرس التربية الإسلامية"
-    ],
-
-    "فرنسي": [
-      "مدرس اللغة الفرنسية"
-    ]
-
-  };
+/* =========================
+   DATA
+========================= */
 
 
-  function showTeachers(subject) {
+const defaultTeachers = [
 
-    const list = document.getElementById("teacherList");
+{
+name:"حسان ثابت المحمدي",
+phone:"",
+subject:"الكيمياء",
+status:false
+},
 
-    const names = teachers[subject];
+{
+name:"أحمد محمد الدهان",
+phone:"",
+subject:"الكيمياء",
+status:false
+},
 
-    if (!names || names.length === 0) {
+{
+name:"إيهاب",
+phone:"",
+subject:"الكيمياء",
+status:false
+},
 
-      list.innerHTML =
-        "لا يوجد مدرسون متواجدون حالياً.";
+{
+name:"خليل الدليمي",
+phone:"",
+subject:"الفيزياء",
+status:false
+},
 
-      return;
+{
+name:"حسن ثابت",
+phone:"",
+subject:"الفيزياء",
+status:false
+},
 
-    }
+{
+name:"اسكندر محمد",
+phone:"",
+subject:"الرياضيات",
+status:false
+},
+
+{
+name:"هادي المعاضيدي",
+phone:"",
+subject:"الرياضيات",
+status:false
+},
+
+{
+name:"حامد عبد عرموط",
+phone:"",
+subject:"الإنكليزي",
+status:false
+},
+
+{
+name:"رياض الحلبوسي",
+phone:"",
+subject:"الإنكليزي",
+status:false
+},
+
+{
+name:"مصطفى هاشم",
+phone:"",
+subject:"العربي",
+status:false
+},
+
+{
+name:"رياض العيسى",
+phone:"",
+subject:"العربي",
+status:false
+},
+
+{
+name:"محمد كريم",
+phone:"",
+subject:"العربي",
+status:false
+},
+
+{
+name:"مصطفى قدوري",
+phone:"",
+subject:"الأحياء",
+status:false
+},
+
+{
+name:"بشرى فرحان",
+phone:"",
+subject:"الإسلامية",
+status:false
+},
+
+{
+name:"رابح",
+phone:"",
+subject:"الإسلامية",
+status:false
+},
+
+{
+name:"أركان المحمدي",
+phone:"",
+subject:"الفرنسي",
+status:false
+}
+
+];
 
 
-    let html = "";
-
-    names.forEach(function(name) {
-
-      html += `
-        <div class="teacher">
-
-          <strong>${name}</strong>
-
-          <div class="teacher-status">
-            ● متواجد في المعهد
-          </div>
-
-        </div>
-      `;
-
-    });
+let teachers =
+JSON.parse(localStorage.getItem("teachers"))
+|| defaultTeachers;
 
 
-    list.innerHTML = html;
+let announcements =
+JSON.parse(localStorage.getItem("announcements"))
+|| [
 
-    document
-      .querySelector(".teachers")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
+{
+title:"أهلاً بكم في المعهد الكندي",
+text:"تابعوا المنصة باستمرار لمعرفة آخر أخبار المعهد."
+}
 
-  }
-
-
-  function changeClass(className, button) {
-
-    document
-      .querySelectorAll(".page")
-      .forEach(function(page) {
-
-        page.classList.remove("active");
-
-      });
+];
 
 
-    document
-      .getElementById(className)
-      .classList.add("active");
+let notifications =
+JSON.parse(localStorage.getItem("notifications"))
+|| [
+
+"مرحباً بكم في منصة المعهد الكندي 🌿"
+
+];
 
 
-    document
-      .querySelectorAll(".tab")
-      .forEach(function(tab) {
-
-        tab.classList.remove("active");
-
-      });
+let questions =
+JSON.parse(localStorage.getItem("questions"))
+|| [];
 
 
-    button.classList.add("active");
+let selectedClass="";
 
 
-    document.getElementById("teacherList").innerHTML =
-      "اختاري المادة لعرض المدرسين المتواجدين.";
 
-  }
+/* =========================
+   NAVIGATION
+========================= */
+
+
+function showPage(id){
+
+document
+.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
+
+document
+.getElementById(id)
+.classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+
+
+if(id==="announcementsPage")
+renderAnnouncements();
+
+
+if(id==="notificationsPage")
+renderNotifications();
+
+
+if(id==="adminPage")
+renderAdmin();
+
+}
+
+
+
+/* =========================
+   ACCOUNT
+========================= */
+
+
+let accountType="";
+
+
+function registerForm(type){
+
+accountType=type;
+
+document
+.getElementById("registerBox")
+.classList.remove("hidden");
+
+
+let titles={
+
+student:"👨‍🎓 إنشاء حساب طالب",
+
+teacher:"👨‍🏫 إنشاء حساب مدرس",
+
+admin:"🏫 إنشاء حساب إدارة"
+
+};
+
+document
+.getElementById("registerTitle")
+.innerText=titles[type];
+
+
+document
+.getElementById("regClass")
+.style.display =
+type==="student"
+?"block"
+:"none";
+
+}
+
+
+function createAccount(){
+
+let name=
+document.getElementById("regName").value;
+
+
+if(!name){
+
+toast("يرجى كتابة الاسم");
+
+return;
+
+}
+
+
+toast(
+"تم إنشاء حساب "+
+name+
+" بنجاح ✅"
+);
+
+}
+
+
+
+/* =========================
+   STUDENT
+========================= */
+
+
+function selectClass(button,className){
+
+selectedClass=className;
+
+document
+.querySelectorAll(".choice")
+.forEach(x=>{
+x.classList.remove("selected");
+});
+
+button.classList.add("selected");
+
+toast("تم اختيار "+className);
+
+}
+
+
+
+function loadTeachers(){
+
+let subject=
+document
+.getElementById("studentSubject")
+.value;
+
+
+let box=
+document
+.getElementById("studentTeachers");
+
+
+if(!subject){
+
+box.innerHTML=
+"<p>اختر المادة لعرض المدرسين.</p>";
+
+return;
+
+}
+
+
+let list=
+teachers.filter(t=>
+t.subject===subject
+);
+
+
+if(list.length===0){
+
+box.innerHTML=
+"<p>لا يوجد مدرسون مضافون لهذه المادة.</p>";
+
+return;
+
+}
+
+
+box.innerHTML="";
+
+
+list.forEach((teacher,index)=>{
+
+let statusClass=
+teacher.status
+?"online"
+:"offline";
+
+let statusText=
+teacher.status
+?"🟢 متواجد"
+:"🔴 غير متواجد";
+
+
+let contact="";
+
+
+if(teacher.phone){
+
+contact=
+`<a class="contact"
+href="tel:${teacher.phone}">
+📞 التواصل مع المدرس
+</a>`;
+
+}else{
+
+contact=
+`<span style="font-size:13px;color:#777">
+لا يوجد رقم تواصل مضاف
+</span>`;
+
+}
+
+
+box.innerHTML+=`
+
+<div class="teacher-card">
+
+<div class="teacher-name">
+👨‍🏫 ${teacher.name}
+</div>
+
+<div class="status ${statusClass}">
+${statusText}
+</div>
+
+<br>
+
+${contact}
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+/* =========================
+   TEACHER
+========================= */
+
+
+function setTeacherStatus(status){
+
+let name=
+document
+.getElementById("teacherNameInput")
+.value;
+
+if(!name){
+
+toast("اكتب اسم المدرس أولاً");
+
+return;
+
+}
+
+
+document
+.getElementById("teacherStatusText")
+.innerHTML=
+status
+?"الحالة الحالية: 🟢 متواجد"
+:"الحالة الحالية: 🔴 غير متواجد";
+
+
+window.currentTeacherStatus=status;
+
+}
+
+
+
+function saveTeacher(){
+
+let name=
+document
+.getElementById("teacherNameInput")
+.value;
+
+let phone=
+document
+.getElementById("teacherPhoneInput")
+.value;
+
+let subject=
+document
+.getElementById("teacherSubjectInput")
+.value;
+
+
+if(!name){
+
+toast("اكتب اسم المدرس");
+
+return;
+
+}
+
+
+let existing=
+teachers.find(t=>
+t.name===name
+);
+
+
+if(existing){
+
+existing.phone=phone;
+existing.subject=subject;
+
+if(
+window.currentTeacherStatus!==undefined
+){
+
+existing.status=
+window.currentTeacherStatus;
+
+}
+
+}else{
+
+teachers.push({
+
+name:name,
+
+phone:phone,
+
+subject:subject,
+
+status:
+window.currentTeacherStatus||false
+
+});
+
+}
+
+
+saveData();
+
+toast("تم حفظ معلومات المدرس ✅");
+
+}
+
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+
+function adminLogin(){
+
+let password=
+document
+.getElementById("adminPassword")
+.value;
+
+
+if(password==="admin123"){
+
+showPage("adminPage");
+
+toast("تم تسجيل الدخول للإدارة 🔐");
+
+}else{
+
+toast("كلمة المرور غير صحيحة ❌");
+
+}
+
+}
+
+
+
+/* =========================
+   ADMIN TEACHERS
+========================= */
+
+
+function addTeacher(){
+
+let name=
+document
+.getElementById("newTeacherName")
+.value;
+
+let phone=
+document
+.getElementById("newTeacherPhone")
+.value;
+
+let subject=
+document
+.getElementById("newTeacherSubject")
+.value;
+
+
+if(!name){
+
+toast("اكتب اسم المدرس");
+
+return;
+
+}
+
+
+teachers.push({
+
+name:name,
+
+phone:phone,
+
+subject:subject,
+
+status:false
+
+});
+
+
+saveData();
+
+renderAdmin();
+
+document
+.getElementById("newTeacherName")
+.value="";
+
+document
+.getElementById("newTeacherPhone")
+.value="";
+
+
+toast("تمت إضافة المدرس ✅");
+
+}
+
+
+
+function deleteTeacher(index){
+
+if(confirm("هل تريد حذف هذا المدرس؟")){
+
+teachers.splice(index,1);
+
+saveData();
+
+renderAdmin();
+
+}
+
+}
+
+
+
+function renderAdmin(){
+
+let box=
+document
+.getElementById("adminTeachers");
+
+
+box.innerHTML="";
+
+
+teachers.forEach((teacher,index)=>{
+
+box.innerHTML+=`
+
+<div class="admin-item">
+
+<strong>
+👨‍🏫 ${teacher.name}
+</strong>
+
+<br>
+
+المادة: ${teacher.subject}
+
+<br>
+
+الحالة:
+${teacher.status
+?"🟢 متواجد"
+:"🔴 غير متواجد"}
+
+<div class="admin-buttons">
+
+<button
+class="danger"
+onclick="deleteTeacher(${index})">
+
+حذف المدرس
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+renderQuestions();
+
+}
+
+
+
+/* =========================
+   ANNOUNCEMENTS
+========================= */
+
+
+function addAnnouncement(){
+
+let title=
+document
+.getElementById("newAnnouncementTitle")
+.value;
+
+let text=
+document
+.getElementById("newAnnouncementText")
+.value;
+
+
+if(!title||!text){
+
+toast("أكمل بيانات الإعلان");
+
+return;
+
+}
+
+
+announcements.unshift({
+
+title:title,
+
+text:text
+
+});
+
+
+saveData();
+
+document
+.getElementById("newAnnouncementTitle")
+.value="";
+
+document
+.getElementById("newAnnouncementText")
+.value="";
+
+
+toast("تم نشر الإعلان 📢");
+
+}
+
+
+
+function renderAnnouncements(){
+
+let box=
+document
+.getElementById("announcementsList");
+
+
+box.innerHTML="";
+
+
+announcements.forEach(a=>{
+
+box.innerHTML+=`
+
+<div class="announcement">
+
+<strong>📢 ${a.title}</strong>
+
+<p>${a.text}</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+
+function addNotification(){
+
+let text=
+document
+.getElementById("newNotification")
+.value;
+
+
+if(!text){
+
+toast("اكتب التنبيه");
+
+return;
+
+}
+
+
+notifications.unshift(text);
+
+saveData();
+
+
+document
+.getElementById("newNotification")
+.value="";
+
+
+toast("تم إرسال التنبيه 🔔");
+
+}
+
+
+
+function renderNotifications(){
+
+let box=
+document
+.getElementById("notificationsList");
+
+
+box.innerHTML="";
+
+
+notifications.forEach(n=>{
+
+box.innerHTML+=`
+
+<div class="notification">
+
+🔔 ${n}
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+/* =========================
+   QUESTIONS
+========================= */
+
+
+function sendQuestion(){
+
+let name=
+document
+.getElementById("questionName")
+.value;
+
+let phone=
+document
+.getElementById("questionPhone")
+.value;
+
+let text=
+document
+.getElementById("questionText")
+.value;
+
+
+if(!name||!text){
+
+toast("اكتب الاسم والاستفسار");
+
+return;
+
+}
+
+
+questions.unshift({
+
+name:name,
+
+phone:phone,
+
+text:text
+
+});
+
+
+saveData();
+
+
+document
+.getElementById("questionName")
+.value="";
+
+document
+.getElementById("questionPhone")
+.value="";
+
+document
+.getElementById("questionText")
+.value="";
+
+
+toast("تم إرسال الاستفسار للإدارة 💬");
+
+}
+
+
+
+function renderQuestions(){
+
+let box=
+document
+.getElementById("adminQuestions");
+
+
+box.innerHTML="";
+
+
+if(questions.length===0){
+
+box.innerHTML=
+"<p>لا توجد استفسارات حالياً.</p>";
+
+return;
+
+}
+
+
+questions.forEach((q,index)=>{
+
+box.innerHTML+=`
+
+<div class="admin-item">
+
+<strong>
+👤 ${q.name}
+</strong>
+
+<br>
+
+📞 ${q.phone||"لا يوجد رقم"}
+
+<p>
+${q.text}
+</p>
+
+<button
+class="danger"
+onclick="deleteQuestion(${index})">
+
+حذف
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+function deleteQuestion(index){
+
+questions.splice(index,1);
+
+saveData();
+
+renderQuestions();
+
+}
+
+
+
+/* =========================
+   STORAGE
+========================= */
+
+
+function saveData(){
+
+localStorage.setItem(
+"teachers",
+JSON.stringify(teachers)
+);
+
+localStorage.setItem(
+"announcements",
+JSON.stringify(announcements)
+);
+
+localStorage.setItem(
+"notifications",
+JSON.stringify(notifications)
+);
+
+localStorage.setItem(
+"questions",
+JSON.stringify(questions)
+);
+
+}
+
+
+
+/* =========================
+   TOAST
+========================= */
+
+
+function toast(message){
+
+let box=
+document
+.getElementById("toast");
+
+
+box.innerText=message;
+
+box.style.display="block";
+
+
+setTimeout(()=>{
+
+box.style.display="none";
+
+},2500);
+
+}
+
 
 </script>
 
